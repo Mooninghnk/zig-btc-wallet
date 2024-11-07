@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="en"><head><script src="./webui.js"></script><title>Hello, World!</title></head><body><h1>Hello, World!</h1><div class="remark"><p>Pug rocks!</p><div id="x"></div><div id="res"></div></div><button onclick="Gen_Keys()">Generate Keys</button><input type="text" name="q" autofocus><button onclick="checkBalance()">CheckBln</button><script type="text/javascript">function Gen_Keys() {
+  create_key().then((res) => {
+    document.getElementById("x").innerHTML = res;
+  });
+}
+
+function checkBalance() {
+  const input = document.querySelector('input[name="q"]').value;
+  checkBln(input).then((res) => {
+    document.getElementById("res").innerHTML = res;
+  });
+}</script></body></html>
