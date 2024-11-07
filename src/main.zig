@@ -28,13 +28,13 @@ fn create_key(e: *webui.Event) void {
 
     const res: [66]u8 = pubkey.toString();
 
-    const prvires: [66]u8 = privkey.toString();
+    const prvires: [64]u8 = privkey.toString();
 
     const wk = alloc.dupeZ(u8, &res) catch unreachable;
 
     defer alloc.free(wk);
 
-    const stx = std.fmt.allocPrintz(alloc, "Private key: {s} \n Pubkey {s}", .{ res, prvires }) catch unreachable;
+    const stx = std.fmt.allocPrintZ(alloc, "Private key: {s} \n Pubkey {s}", .{ res, prvires }) catch unreachable;
 
     print("{s}", .{res});
 
