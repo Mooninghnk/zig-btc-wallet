@@ -48,6 +48,12 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
+    const ripemd160 = b.addModule("ripemd160", .{
+        .root_source_file = b.path("src/ripemd160/ripemd160.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+
     // This declares intent for the executable to be installed into the
     // standard location when the user invokes the "install" step (the default
     // step when running `zig build`).
@@ -55,8 +61,9 @@ pub fn build(b: *std.Build) void {
 
     exe.root_module.addImport("sepc", sepc.module("secp256k1"));
 
-    // add module
     exe.root_module.addImport("webui", zig_webui.module("webui"));
+
+    exe.root_module.addImport("ripemd160", ripemd160);
 
     // This *creates* a Run step in the build graph, to be executed when another
     // step is evaluated that depends on it. The next line below will establish
